@@ -43,8 +43,7 @@ node scripts/install-web.mjs                # 打包 → 备份 profile → 安�
 | 情况 | 为什么 |
 | --- | --- |
 | profile 里 HMR 被关掉（patch 写了 `id: hmr, disabled: true`，或用了 `--patch` 覆盖） | 没有 HMR 时运行中的组合不会重组，管理器会返回 `restart-required`（`restartReason: no-hmr`） |
-| 换掉的是**已经在跑**的同一个包（版本升级/重新链接） | 旧版本的插件无法在运行中卸载，管理器返回 `restart-required`（`package-moved`） |
-| 本插件是 `link:` 源码链接而不是打包安装 | 改源码后需要重建 bundle 并重启 |
+| 换掉的是**已经在跑**的同一个包（版本升级或更换安装包） | 旧版本的插件无法在运行中卸载，管理器返回 `restart-required`（`package-moved`） |
 
 安装脚本会把收据写到 `artifacts/dsh-install.json`，并备份 profile 的 `package.json` / lockfile / patch 到 `.plugin-manager/comfyui-backup-*`。
 
