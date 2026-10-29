@@ -1,0 +1,3 @@
+- insert:
+    - id: comfyui
+      name: '@dsh/comfyui'
