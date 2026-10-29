@@ -50,9 +50,9 @@ node scripts/install-web.mjs                # 打包 → 备份 profile → 安�
 停用与卸载：
 
 ```bash
-# 1. 从 profile 的 dsh.profile.bundles 里删掉 @dsh/comfyui（否则它会一直尝试加载）
+# 1. 从 profile 的 dsh.profile.bundles 里删掉 dsh-mek-comfyui（否则它会一直尝试加载）
 # 2. 再移除依赖
-dsh plugin --profile web remove @dsh/comfyui
+dsh plugin --profile web remove dsh-mek-comfyui
 # 或直接把备份目录里的 package.json / cordis.patch.yml 复制回去
 ```
 

@@ -35,7 +35,7 @@ const client = await readFile(join(project, 'lib/client.js'), 'utf8').catch(() =
 if (!client.includes('window.__ModuleLoader__.load(')) {
   throw new Error('lib/client.js is missing or unbuilt — run `node scripts/build.mjs` first');
 }
-if (!client.includes('@dsh/comfyui')) {
+if (!client.includes('dsh-mek-comfyui')) {
   throw new Error('lib/client.js was built for a different plugin id');
 }
 

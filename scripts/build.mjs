@@ -1,5 +1,5 @@
 /**
- * Build the browser half of `@dsh/comfyui`.
+ * Build the browser half of `dsh-mek-comfyui`.
  *
  * esbuild bundles `client/index.js` into one CommonJS chunk, which is then
  * wrapped in dsh's `window.__ModuleLoader__.load({ id, factory })` envelope so
@@ -40,7 +40,7 @@ function loadEsbuild() {
 }
 
 /** Package id used in the ModuleLoader envelope and by every registration. */
-const PLUGIN_ID = '@dsh/comfyui';
+const PLUGIN_ID = 'dsh-mek-comfyui';
 
 /** Modules dsh's ModuleLoader supplies to a client plugin. */
 const EXTERNALS = [

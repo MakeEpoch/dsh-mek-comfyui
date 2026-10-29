@@ -1,5 +1,5 @@
 /**
- * Browser half of `@dsh/comfyui`.
+ * Browser half of `dsh-mek-comfyui`.
  *
  * Registers one settings section, one right-sidebar tab type (with its body
  * and guide entry), and the `comfyui_generate` conversation card. All

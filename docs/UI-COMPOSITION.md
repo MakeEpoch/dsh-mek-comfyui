@@ -1,13 +1,13 @@
 # UI 组合：所有权、命名空间与 Factory 局部空间
 
-适用：`@dsh/comfyui`，按 dsh `0.2.2-alpha.2` 的实际 SlotCore / renderer 接口核对。
+适用：`dsh-mek-comfyui`，按 dsh `0.2.2-alpha.2` 的实际 SlotCore / renderer 接口核对。
 
 ## 三种操作不要混用
 
 | 目的 | 正确操作 | 是否创建全局名字 |
 | --- | --- | --- |
 | 给宿主已有位置贡献 UI | `slots.inject(name, () => slots.register({ name, key/id, ... }, Component))` | 否；在已有槽位内登记一个贡献 |
-| 为自己拥有的位置声明扩展点 | 注册条目的 `children: { '@dsh/comfyui.some-position': spec }` | 是；一个名字只能有一个声明所有者 |
+| 为自己拥有的位置声明扩展点 | 注册条目的 `children: { 'dsh-mek-comfyui.some-position': spec }` | 是；一个名字只能有一个声明所有者 |
 | 在多个位置复用同一种 UI | 通过组件 props 的 `renderFactorySlot(factoryName, inputProps, options)` | 否；使用已经注册的 Factory 创建独立 occurrence |
 
 `key` / `id` 区分父槽位中的贡献，不会给其 `children` 自动加前缀。`priority` 决定同一个位置的贡献选择，不能解决子槽位的重复声明。
@@ -37,8 +37,8 @@ renderFactorySlot('conversation.images.content', {
 新建全局 Slot 或 Factory 时使用完整插件前缀，例如：
 
 ```text
-@dsh/comfyui.generate-card
-@dsh/comfyui.generate-card.actions
+dsh-mek-comfyui.generate-card
+dsh-mek-comfyui.generate-card.actions
 ```
 
 这些仍是全局名字，前缀只是避免包之间意外重名的约定。一个名字集中声明一次。不要声明 `tool.*`、`conversation.*` 等宿主已经拥有的扩展点；给它们贡献内容不等于取得声明权。
@@ -56,7 +56,7 @@ renderFactorySlot('conversation.images.content', {
 ```jsx
 // 整个插件生命周期内只注册一次 Factory。
 ctx.slots.registerFactory({
-  name: '@dsh/comfyui.generate-card',
+  name: 'dsh-mek-comfyui.generate-card',
   scope: 'root',
   slots: { actions: { scope: 'root' } },
 }, function Card({ useFactorySlot }) {
@@ -65,7 +65,7 @@ ctx.slots.registerFactory({
 });
 
 // 在 renderer 提供的组件 props 中使用：每次调用是独立 occurrence。
-renderFactorySlot('@dsh/comfyui.generate-card', {}, {
+renderFactorySlot('dsh-mek-comfyui.generate-card', {}, {
   slots: { actions: CustomActions },
 });
 ```

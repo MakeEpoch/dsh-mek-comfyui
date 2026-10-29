@@ -1,5 +1,5 @@
 /**
- * Pure display helpers for `@dsh/comfyui`.
+ * Pure display helpers for `dsh-mek-comfyui`.
  *
  * Everything in this module is a total function over untrusted Host data: no
  * React, no DOM, no imports. Callers get a display string for any input, and

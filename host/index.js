@@ -1,5 +1,5 @@
 /**
- * dsh host entry: `@dsh/comfyui`.
+ * dsh host entry: `dsh-mek-comfyui`.
  *
  * Cordis semantics this plugin relies on:
  *  - `Config` is read by the Settings service, so every user-editable field is

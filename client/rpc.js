@@ -1,5 +1,5 @@
 /**
- * RPC client for `@dsh/comfyui`.
+ * RPC client for `dsh-mek-comfyui`.
  *
  * The browser never talks to ComfyUI directly: every call rides dsh's shared
  * `/api` carrier and is answered by the Host half (see docs/CONTRACT.md §2).

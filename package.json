@@ -1,5 +1,5 @@
 {
-  "name": "@dsh/comfyui",
+  "name": "dsh-mek-comfyui",
   "version": "0.1.2",
   "description": "ComfyUI · 把本地/远程 ComfyUI 接进 dsh：设置配置地址与模型，对话里生成图片，右侧侧边栏看队列进度与图片库",
   "type": "module",

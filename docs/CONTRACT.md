@@ -1,10 +1,10 @@
 # ComfyUI 插件内部契约（Host ↔ Client）
 
-本文件是 `@dsh/comfyui` 的**唯一接口契约**。Host 与 Client 两半都按它实现；改协议先改这里。
+本文件是 `dsh-mek-comfyui` 的**唯一接口契约**。Host 与 Client 两半都按它实现；改协议先改这里。
 
-- 插件名：`@dsh/comfyui`，目录 `.`
+- 插件名：`dsh-mek-comfyui`，目录 `.`
 - Host 入口：`host/index.js`（ESM，Cordis 插件，`export const name/inject/Config/apply`）
-- Client 入口：`client/index.js` → 构建产物 `lib/client.js`（CommonJS + `window.__ModuleLoader__.load({id:'@dsh/comfyui',factory})`）
+- Client 入口：`client/index.js` → 构建产物 `lib/client.js`（CommonJS + `window.__ModuleLoader__.load({id:'dsh-mek-comfyui',factory})`）
 - dsh 版本：`>=0.2.1-rc.2 <0.3.0`
 
 ## 1. 数据模型
@@ -225,8 +225,8 @@ timeout_seconds integer 默认取设置 generateTimeoutSeconds
 | 槽位 | 用途 |
 | --- | --- |
 | `settings.section`（`id:'comfyui'`, `order: 34`, `label:()=> 'ComfyUI'`） | 设置页：连接、模型、预设、生成默认值、图库与存储 |
-| `sidebarRightTabs.register({ id:'@dsh/comfyui', kind:'comfyui', title, guide:[{ id:'comfyui', order:18, title, description, icon }] })` | 右侧栏页签与引导卡 |
-| `sidebar.right.pane.tab`（key `'@dsh/comfyui'`） | 右侧栏主体：`生成 / 队列 / 图库` 三个内部分段 |
+| `sidebarRightTabs.register({ id:'dsh-mek-comfyui', kind:'comfyui', title, guide:[{ id:'comfyui', order:18, title, description, icon }] })` | 右侧栏页签与引导卡 |
+| `sidebar.right.pane.tab`（key `'dsh-mek-comfyui'`） | 右侧栏主体：`生成 / 队列 / 图库` 三个内部分段 |
 | `tool.call.toolview`（key `'comfyui_generate'`，不声明图片 child slot） | 对话里的生成卡：进度、参数、结果图片；通过 `renderFactorySlot('conversation.images.content', { images, loadImage, align:'start' }, { fallback })` 复用官方画廊 |
 
 ### 4.1 所有权与命名空间
@@ -234,7 +234,7 @@ timeout_seconds integer 默认取设置 generateTimeoutSeconds
 - `children` 是**全局槽位声明**，不是“引用已有槽位”；同名声明即使挂在不同的 toolview key 下、`kind/scope` 完全相同，也会冲突。`tool.call.images` 由基座 `read-image-toolview` 拥有，本插件不得再次声明或借用其 `renderSlot` 权限。
 - 共享 UI 用公开的 **Factory**：renderer 为普通槽位组件提供 `renderFactorySlot`，调用 `conversation.images.content` 不需要声明 `children`，也不需要导入基座私有 React 组件。
 - 画廊没有注册时由 Factory outlet 渲染 `fallback`；旧 renderer 未提供 `renderFactorySlot`、没有附件/授权 loader 或同步调用失败时，生成卡退回插件自有缩略图，不影响设置页和侧栏注册。
-- 插件确实需要新增全局槽位/Factory 时，用 `@dsh/comfyui.*` 作为命名前缀，并集中声明一次。给现有公共槽位贡献内容只使用 `name` + `key/id`，不要把该槽位再次写进 `children`。
+- 插件确实需要新增全局槽位/Factory 时，用 `dsh-mek-comfyui.*` 作为命名前缀，并集中声明一次。给现有公共槽位贡献内容只使用 `name` + `key/id`，不要把该槽位再次写进 `children`。
 - `scope: 'root' | 'session' | 'session-maybe'` 控制数据绑定与生命周期，**不是槽位名的命名空间**。可复用 Factory 内部的可替换组件应声明在 Factory 的 `slots` 中，通过 `useFactorySlot`/调用者的 `options.slots` 选择；它们属于 Factory 局部空间，不是全局 `children`。
 
 详细示例与边界见 [UI-COMPOSITION.md](UI-COMPOSITION.md)。

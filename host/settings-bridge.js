@@ -60,13 +60,13 @@ export function resolveSettingsEntry(ctx) {
   };
   const ownUid = ctx.fiber?.uid;
   const own = entries.find((entry) => {
-    if (entry?.options?.name === '@dsh/comfyui') return true;
+    if (entry?.options?.name === 'dsh-mek-comfyui') return true;
     if (ownUid === undefined || !entry?.fiber) return false;
     return entry.fiber === ctx.fiber || entry.fiber.uid === ownUid;
   });
   const ownNs = nsOf(own);
   if (ownNs) return { ns: ownNs, entry: own };
-  const byName = entries.find((entry) => entry?.options?.name === '@dsh/comfyui');
+  const byName = entries.find((entry) => entry?.options?.name === 'dsh-mek-comfyui');
   const byNameNs = nsOf(byName);
   if (byNameNs) return { ns: byNameNs, entry: byName };
   return { ns: 'comfyui', entry: null };

@@ -1,5 +1,5 @@
 /**
- * Shared stylesheet for `@dsh/comfyui`.
+ * Shared stylesheet for `dsh-mek-comfyui`.
  *
  * One `<style data-dsh-css="dsh-comfyui">` tag serves the settings page, the
  * sidebar panel, and the conversation card. It is installed on first use,

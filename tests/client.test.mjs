@@ -21,7 +21,7 @@ function loadPlugin() {
   let plugin;
   vm.runInNewContext(bundle, {
     window: { __ModuleLoader__: { load({ id, factory }) {
-      assert.equal(id, '@dsh/comfyui');
+      assert.equal(id, 'dsh-mek-comfyui');
       plugin = factory((name) => {
         assert.equal(name, 'react', `unexpected runtime import: ${name}`);
         return React;
