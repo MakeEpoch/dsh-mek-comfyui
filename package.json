@@ -1,6 +1,6 @@
 {
   "name": "dsh-mek-comfyui",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "ComfyUI · 把本地/远程 ComfyUI 接进 dsh：设置配置地址与模型，对话里生成图片，右侧侧边栏看队列进度与图片库",
   "type": "module",
   "main": "./host/index.js",
@@ -22,9 +22,6 @@
     "LICENSE"
   ],
   "dsh": {
-    "engines": {
-      "dsh": ">=0.2.1-rc.2 <0.3.0"
-    },
     "bundle": {
       "patch": "./cordis.patch.yml"
     },
@@ -49,7 +46,8 @@
     "pack:check": "npm pack --dry-run"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "dsh": ">=0.2.1-rc.2 <0.3.0-0"
   },
   "devDependencies": {
     "esbuild": "0.25.12",
@@ -82,11 +80,11 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@deepseek-ai/cordis": "4.0.6-alpha.1",
-    "@deepseek-ai/dsh-home-paths": "0.2.2-alpha.2",
-    "@deepseek-ai/dsh-llm": "0.2.2-alpha.2",
-    "@deepseek-ai/dsh-scope": "0.2.2-alpha.2",
-    "@deepseek-ai/dsh-tools": "0.2.2-alpha.2",
-    "@deepseek-ai/schemastery": "3.18.6-alpha.1"
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-home-paths": "*",
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/dsh-scope": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
   }
 }
